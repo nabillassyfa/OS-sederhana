@@ -16,6 +16,7 @@
 # 7. mv : mengganti penamaan pada file, atau memindahkan file
 # 8. pwd : menampilkan direktori saat ini
 # 9. cp : menyalin file
+# 10 . clear : menghapus riwayat/history perintah
 
 
 import os
@@ -97,6 +98,9 @@ def pwd():
     except Exception as e:
         print(f'Error saat mendapatkan direktori kerja: {e}')
 
+# cp file_yang_di_copy .\nama_file_yang_sudah_ada (meng copy isinya - file berada di dir yang sama)
+# cp file_yang_di_copy .\nama_file_baru_yang_belum_ada (meng copy filenya dengan nama baru - file berada di dir yang sama)
+# cp file_yang_di_copy .\nama_folder_dibawah_dir_saat_ini (meng copy file ke folder yang dituju - folder berada di bawah dir saat ini)
 def cp(src, dest):
     try:
         shutil.copy(src, dest)
