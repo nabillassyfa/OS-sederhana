@@ -38,6 +38,8 @@ while True:
         pwd()
     elif cmd == 'cp' and len(args) == 2:
         cp(args[0], args[1])
+    elif cmd == 'clear':
+        clear()
     elif cmd == 'exit':
         print('PySO .... Exiting :)')
         break

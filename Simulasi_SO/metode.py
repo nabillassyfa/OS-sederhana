@@ -20,7 +20,6 @@
 
 import os
 import shutil
-# import readline
 
 def mkdir(path):
     try:
@@ -106,3 +105,11 @@ def cp(src, dest):
         print(f'File {src} tidak ditemukan')
     except Exception as e:
         print(f'Error saat menyalin file {src} ke {dest}: {e}')
+
+def clear():
+    try:
+        # Menghapus layar dan riwayat perintah di Command Prompt
+        os.system('cls')
+        # print("Riwayat perintah berhasil dihapus.")
+    except Exception as e:
+        print(f"Terjadi kesalahan saat menghapus riwayat perintah: {e}")
