@@ -34,6 +34,10 @@ while True:
         cat(args[0])
     elif cmd == 'mv' and len(args) == 2:
         mv(args[0], args[1])
+    elif cmd == 'pwd':
+        pwd()
+    elif cmd == 'cp' and len(args) == 2:
+        cp(args[0], args[1])
     elif cmd == 'exit':
         print('PySO .... Exiting :)')
         break

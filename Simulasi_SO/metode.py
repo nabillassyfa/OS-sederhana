@@ -14,10 +14,13 @@
 # 5. ls : menampilkan struktur File
 # 6. cd : mengganti path direktori pada PyOS
 # 7. mv : mengganti penamaan pada file, atau memindahkan file
+# 8. pwd : menampilkan direktori saat ini
+# 9. cp : menyalin file
 
 
 import os
 import shutil
+# import readline
 
 def mkdir(path):
     try:
@@ -87,3 +90,19 @@ def mv(src, dest):
         print(f'File atau Direktori {src} tidak ditemukan')
     except Exception as e:
         print(f'Error moving {src} to {dest}: {e}')
+
+def pwd():
+    try:
+        current_dir = os.getcwd()
+        print(f'Direktori saat ini: {current_dir}')
+    except Exception as e:
+        print(f'Error saat mendapatkan direktori kerja: {e}')
+
+def cp(src, dest):
+    try:
+        shutil.copy(src, dest)
+        print(f'File {src} berhasil disalin ke {dest}')
+    except FileNotFoundError:
+        print(f'File {src} tidak ditemukan')
+    except Exception as e:
+        print(f'Error saat menyalin file {src} ke {dest}: {e}')
