@@ -7,14 +7,18 @@
 # Date : 2024-05-30
 #***************************************
 
-
-import os
 from metode import *    #mengambil semua file yang ada pada metode.py
+from OS import *
 
 
 print("Simulasi OS")
-while True:
-    command = input(f'PySO $> ').strip().split()
+initialize_file_system()
+
+cek = 1 # untuk tanda looping
+while cek == 1:
+    
+    prompt_path = get_relative_path()
+    command = input(f'{prompt_path} $~> ').strip().split()
     if len(command) == 0:
         continue
     cmd = command[0].lower()
@@ -40,8 +44,10 @@ while True:
         cp(args[0], args[1])
     elif cmd == 'clear':
         clear()
+    elif cmd == 'ex':
+        cd("..")
     elif cmd == 'exit':
         print('PySO .... Exiting :)')
-        break
+        cek = 0
     else:
         print('Perintah tidak ditemukan, mohon masukan perintah sesuai')

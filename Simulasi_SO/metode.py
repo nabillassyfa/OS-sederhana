@@ -22,6 +22,7 @@
 import os
 import shutil
 
+
 def mkdir(path):
     try:
         os.makedirs(path)
@@ -44,17 +45,19 @@ def del_file(path):
     except Exception as e:
         print(f'Error {path}: {e}')
 
+
 def cd(path):
     try:
         if path == "..":
             os.chdir(os.path.dirname(os.getcwd()))
         else:
             os.chdir(path)
-        print(f'Direktori berubah menjadi {os.getcwd()}')
+            print(f'Direktori berubah menjadi {path}')
     except FileNotFoundError:
         print(f'Direktori {path} tidak ditemukan')
     except Exception as e:
         print(f'Error changing Direktori to {path}: {e}')
+
 
 def mkfile(filename):
     try:
@@ -63,6 +66,7 @@ def mkfile(filename):
         print(f'File {filename} sukses dibuat')
     except Exception as e:
         print(f'Error creating file {filename}: {e}')
+
 
 def ls():
     try:
@@ -73,6 +77,7 @@ def ls():
     except Exception as e:
         print(f'Error : {e}')
 
+
 def cat(filename):
     try:
         with open(filename, 'r') as f:
@@ -82,10 +87,18 @@ def cat(filename):
     except Exception as e:
         print(f'Error saat membaca file {filename}: {e}')
 
+
+# mv nama-file-yang-diubah .\nama-file-baru (mengubah nama file)
+# mv nama-file-yang-diubah .\nama-direktori (memindahkan  file ke folder yang dituju - folder berada di bawah dir saat ini)
 def mv(src, dest):
     try:
-        shutil.move(src, dest)
-        print(f'{src} diganti {dest}')
+        if os.path.isdir(dest):
+            new_dest = os.path.join(dest, os.path.basename(src))
+            shutil.move(src, new_dest)
+            print(f'{src} berhasil dipindahkan ke direktori {new_dest}')
+        else:
+            os.replace(src, dest)
+            print(f'{src} berhasil diganti menjadi {dest}')
     except FileNotFoundError:
         print(f'File atau Direktori {src} tidak ditemukan')
     except Exception as e:
@@ -117,3 +130,4 @@ def clear():
         # print("Riwayat perintah berhasil dihapus.")
     except Exception as e:
         print(f"Terjadi kesalahan saat menghapus riwayat perintah: {e}")
+        
