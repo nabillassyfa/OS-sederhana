@@ -17,11 +17,11 @@
 # 8. pwd : menampilkan direktori saat ini
 # 9. cp : menyalin file
 # 10 . clear : menghapus riwayat/history perintah
+# 11 . nano : mengedit isi file di terminal
 
 
 import os
 import shutil
-
 
 def mkdir(path):
     try:
@@ -45,7 +45,6 @@ def del_file(path):
     except Exception as e:
         print(f'Error {path}: {e}')
 
-
 def cd(path):
     try:
         if path == "..":
@@ -58,7 +57,6 @@ def cd(path):
     except Exception as e:
         print(f'Error changing Direktori to {path}: {e}')
 
-
 def mkfile(filename):
     try:
         with open(filename, 'w') as f:
@@ -66,7 +64,6 @@ def mkfile(filename):
         print(f'File {filename} sukses dibuat')
     except Exception as e:
         print(f'Error creating file {filename}: {e}')
-
 
 def ls():
     try:
@@ -77,7 +74,6 @@ def ls():
     except Exception as e:
         print(f'Error : {e}')
 
-
 def cat(filename):
     try:
         with open(filename, 'r') as f:
@@ -87,9 +83,6 @@ def cat(filename):
     except Exception as e:
         print(f'Error saat membaca file {filename}: {e}')
 
-
-# mv nama-file-yang-diubah .\nama-file-baru (mengubah nama file)
-# mv nama-file-yang-diubah .\nama-direktori (memindahkan  file ke folder yang dituju - folder berada di bawah dir saat ini)
 def mv(src, dest):
     try:
         if os.path.isdir(dest):
@@ -111,9 +104,6 @@ def pwd():
     except Exception as e:
         print(f'Error saat mendapatkan direktori kerja: {e}')
 
-# cp file_yang_di_copy .\nama_file_yang_sudah_ada (meng copy isinya - file berada di dir yang sama)
-# cp file_yang_di_copy .\nama_file_baru_yang_belum_ada (meng copy filenya dengan nama baru - file berada di dir yang sama)
-# cp file_yang_di_copy .\nama_folder_dibawah_dir_saat_ini (meng copy file ke folder yang dituju - folder berada di bawah dir saat ini)
 def cp(src, dest):
     try:
         shutil.copy(src, dest)
@@ -125,9 +115,23 @@ def cp(src, dest):
 
 def clear():
     try:
-        # Menghapus layar dan riwayat perintah di Command Prompt
-        os.system('cls')
-        # print("Riwayat perintah berhasil dihapus.")
+        os.system('cls' if os.name == 'nt' else 'clear')
     except Exception as e:
         print(f"Terjadi kesalahan saat menghapus riwayat perintah: {e}")
+
+def nano(filename):
+    try:
+        print("Masukkan teks di bawah ini. Akhiri input dengan satu baris kosong:")
+        lines = []
+        while True:
+            line = input()
+            if line == "":
+                break
+            lines.append(line)
         
+        with open(filename, 'w') as f:
+            f.write("\n".join(lines))
+        
+        print(f'Isi file {filename} sukses diubah')
+    except Exception as e:
+        print(f'Error saat mengedit file {filename}: {e}')
