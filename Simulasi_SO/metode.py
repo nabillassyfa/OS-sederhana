@@ -83,6 +83,8 @@ def cat(filename):
     except Exception as e:
         print(f'Error saat membaca file {filename}: {e}')
 
+# mv nama-file-yang-diubah .\nama-file-baru (mengubah nama file)
+# mv nama-file-yang-diubah .\nama-direktori (memindahkan  file ke folder yang dituju - folder berada di bawah dir saat ini)
 def mv(src, dest):
     try:
         if os.path.isdir(dest):
@@ -104,6 +106,9 @@ def pwd():
     except Exception as e:
         print(f'Error saat mendapatkan direktori kerja: {e}')
 
+# cp file_yang_di_copy .\nama_file_yang_sudah_ada (meng copy isinya - file berada di dir yang sama)
+# cp file_yang_di_copy .\nama_file_baru_yang_belum_ada (meng copy filenya dengan nama baru - file berada di dir yang sama)
+# cp file_yang_di_copy .\nama_folder_dibawah_dir_saat_ini (meng copy file ke folder yang dituju - folder berada di bawah dir saat ini)
 def cp(src, dest):
     try:
         shutil.copy(src, dest)
